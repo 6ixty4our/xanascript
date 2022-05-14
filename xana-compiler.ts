@@ -4,12 +4,17 @@ import { performance } from 'perf_hooks'
 
 const xanaFile: string = process.argv[2]
 
+if (!xanaFile) {
+  LogXanaCompilationError(`Nenhum arquivo especificado!`)
+  exit(1)
+}
+
 if (!xanaFile.endsWith(".xs")) {
   LogXanaCompilationError(`'${xanaFile.substring(1)}' não é um arquivo XanaScript! Arquivos XanaScript terminam em .xs`)
   exit(1)
 }
 
-fs.readFile(__dirname + xanaFile, (err, data) => {
+fs.readFile(process.cwd() + xanaFile, (err, data) => {
   if (err) {
     LogXanaCompilationError("Erro ao compilar o seu arquivo! \x1b[0m \n\n" + err)
     exit(1)
@@ -45,7 +50,7 @@ fs.readFile(__dirname + xanaFile, (err, data) => {
     JSOutput += "\n"
   })
 
-  fs.writeFile(__dirname + xanaFile.replace(".xs", ".js"), JSOutput, (err) => {
+  fs.writeFile(process.cwd() + xanaFile.replace(".xs", ".js"), JSOutput, (err) => {
     if (err) LogXanaCompilationError("Erro ao compilar o seu arquivo! \n\n" + err)
   })
 
