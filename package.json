@@ -1,0 +1,14 @@
+{
+  "name": "xanascript-compiler",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "run-js": "node xereca-math.js",
+    "run": "ts-node ./xana-compiler.ts /xereca-math.xs && pnpm run run-js"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.33",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}
